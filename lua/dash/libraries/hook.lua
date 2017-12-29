@@ -44,7 +44,8 @@ function Call(name, gm, ...)
 	end
 	
 	if name != 'hookCall' then
-		Call('hookCall', GAMEMODE, name, gm, ...)
+		local a, b, c, d, e, f = Call('hookCall', GAMEMODE, name, gm, ...)
+		if a != nil then return a, b, c, d, e, f end
 	end
 
 	if (not gm) then
