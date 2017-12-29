@@ -22,7 +22,9 @@ local function Exists(name, id)
 	return (hook_index[name] ~= nil) and (hook_index[name][id] ~= nil)
 end
 
-local function Call(name, gm, ...)
+local Call
+
+function Call(name, gm, ...)
 	local callbacks = hook_callbacks[name]
 
 	if (callbacks ~= nil) then
@@ -39,6 +41,10 @@ local function Call(name, gm, ...)
 			end
 			goto runhook
 		end
+	end
+	
+	if name != 'hookCall' then
+		Call('hookCall', GAMEMODE, name, gm, ...)
 	end
 
 	if (not gm) then
